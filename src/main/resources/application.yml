@@ -30,14 +30,11 @@ jwt:
       resource-id: login-app
       principal-attribute: preferred_username
 
-keycloak-initializer:
-  initializeOnStartup: false
-  masterRealm: master
-  applicationRealm: learn-realm
-  client-id: admin-cli
-  username: admin
-  password: admin
-  url: http://${KEYCLOAK_HOST:localhost}:${KEYCLOAK_PORT:8443}/auth/
+springdoc:
+  swagger-ui:
+    oauth:
+      client-id: login-app
+
 
 logging:
   level:

@@ -17,11 +17,15 @@ public class WebSecurityConfig {
     public static final String ADMIN = "admin";
     public static final String USER = "user";
     private final JwtAuthConverter jwtAuthConverter;
+    private static final String[] AUTH_WHITELIST = {"/swagger-resources", "/swagger-resources/**", "/configuration/ui",
+            "/configuration/security", "/swagger-ui.html/**", "/webjars/**", "/v3/api-docs/**", "/v3/api-docs",
+            "/public/**", "/public/authenticate", "/actuator/*", "/swagger-ui/**", "/api/api-docs/**","/test/anonymous","/test/anonymous/**"};
+
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.sessionManagement(s-> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-            .authorizeHttpRequests(auth -> auth.requestMatchers(HttpMethod.GET, "/test/anonymous", "/test/anonymous/**").permitAll()
+            .authorizeHttpRequests(auth -> auth.requestMatchers(AUTH_WHITELIST).permitAll()
                     .requestMatchers(HttpMethod.GET, "/test/admin", "/test/admin/**").hasRole(USER)
                     .requestMatchers(HttpMethod.GET, "/test/user").hasAnyRole(ADMIN, USER)
                     .anyRequest().authenticated())
