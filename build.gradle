@@ -1,0 +1,89 @@
+buildscript {
+
+	repositories {
+		maven {
+			url "http://172.29.7.156:8081/repository/maven-public/"
+			credentials {
+				username System.getenv('MAVEN_REPO_USER')
+				password System.getenv("MAVEN_REPO_PASS")
+			}
+			allowInsecureProtocol = true
+		}
+
+	}
+
+
+	ext {
+		springBootVersion = '3.2.0'
+	}
+
+	dependencies {
+		classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+		classpath "io.spring.gradle:dependency-management-plugin:1.0.15.RELEASE"
+
+	}
+}
+
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.2.0'
+	id 'io.spring.dependency-management' version '1.1.4'
+}
+
+repositories {
+	maven {
+		url "http://172.29.7.156:8081/repository/maven-public/"
+		credentials {
+			username System.getenv('MAVEN_REPO_USER')
+			password System.getenv("MAVEN_REPO_PASS")
+		}
+		allowInsecureProtocol = true
+	}
+}
+
+group = 'com.test'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '17'
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+	implementation 'org.springframework.boot:spring-boot-starter-graphql'
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-authorization-server'
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-web-services'
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+	implementation 'org.apache.kafka:kafka-streams'
+	implementation 'org.liquibase:liquibase-core'
+	implementation 'org.springframework.kafka:spring-kafka'
+	// https://mvnrepository.com/artifact/org.keycloak/keycloak-admin-client
+	implementation group: 'org.keycloak', name: 'keycloak-admin-client', version: '23.0.3'
+	compileOnly 'org.projectlombok:lombok'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	runtimeOnly 'com.h2database:h2'
+	runtimeOnly 'org.postgresql:postgresql'
+	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'io.projectreactor:reactor-test'
+	testImplementation 'org.springframework.graphql:spring-graphql-test'
+	testImplementation 'org.springframework.kafka:spring-kafka-test'
+	testImplementation 'org.springframework.security:spring-security-test'
+
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
