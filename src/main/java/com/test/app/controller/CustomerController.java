@@ -41,9 +41,9 @@ public class CustomerController {
 
     @GetMapping("/user")
     public ResponseEntity<String> getUser(Principal principal) {
-        JwtAuthenticationToken token = (JwtAuthenticationToken) principal;
-        String userName = (String) token.getTokenAttributes().get("name");
-        String userEmail = (String) token.getTokenAttributes().get("email");
-        return ResponseEntity.ok("Hello User \nUser Name : " + userName + "\nUser Email : " + userEmail);
+//        JwtAuthenticationToken token = (JwtAuthenticationToken) principal;
+//        String userName = (String) token.getTokenAttributes().get("name");
+//        String userEmail = (String) token.getTokenAttributes().get("email");
+        return ResponseEntity.ok("Hello User \nUser Name : " + principal.getName() + "\nUser Email : " + principal.getName());
     }
 }
