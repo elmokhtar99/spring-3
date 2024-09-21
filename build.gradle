@@ -1,14 +1,15 @@
 buildscript {
 
 	repositories {
-		maven {
-			url "http://172.29.7.156:8081/repository/maven-public/"
-			credentials {
-				username System.getenv('MAVEN_REPO_USER')
-				password System.getenv("MAVEN_REPO_PASS")
-			}
-			allowInsecureProtocol = true
-		}
+		mavenCentral()
+//		maven {
+//			url "http://172.29.7.156:8081/repository/maven-public/"
+//			credentials {
+//				username System.getenv('MAVEN_REPO_USER')
+//				password System.getenv("MAVEN_REPO_PASS")
+//			}
+//			allowInsecureProtocol = true
+//		}
 
 	}
 
@@ -31,14 +32,15 @@ plugins {
 }
 
 repositories {
-	maven {
-		url "http://172.29.7.156:8081/repository/maven-public/"
-		credentials {
-			username System.getenv('MAVEN_REPO_USER')
-			password System.getenv("MAVEN_REPO_PASS")
-		}
-		allowInsecureProtocol = true
-	}
+	mavenCentral()
+//	maven {
+//		url "http://172.29.7.156:8081/repository/maven-public/"
+//		credentials {
+//			username System.getenv('MAVEN_REPO_USER')
+//			password System.getenv("MAVEN_REPO_PASS")
+//		}
+//		allowInsecureProtocol = true
+//	}
 }
 
 group = 'com.test'
@@ -68,11 +70,7 @@ dependencies {
 	implementation 'org.apache.kafka:kafka-streams'
 	implementation 'org.liquibase:liquibase-core'
 	implementation 'org.springframework.kafka:spring-kafka'
-	// https://mvnrepository.com/artifact/org.keycloak/keycloak-admin-client
 	implementation group: 'org.keycloak', name: 'keycloak-admin-client', version: '23.0.3'
-//// https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-ui
-//	implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.7.0'
-	// https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui
 	implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.3.0'
 
 

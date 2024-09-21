@@ -1,0 +1,8 @@
+app:
+  keycloak:
+    credentials:
+      client-id: login-app
+      client-secret: CNjWsVJ1FAHhwNiBCvd6uzDipEOod5Du
+      realm: learn-realm
+      username: e.elmokhtar
+      password: azerty123
