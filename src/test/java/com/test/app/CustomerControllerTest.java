@@ -9,10 +9,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.security.test.context.support.WithMockUser;
-import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -23,7 +21,7 @@ import java.util.List;
 import static org.mockito.Mockito.when;
 
 @WebMvcTest(CustomerController.class)
-@Import({JwtAuthConverterProperties.class, WebSecurityConfig.class})
+@ComponentScan(basePackages = "com.test.app")
 public class CustomerControllerTest {
     @Autowired
     private MockMvc mockMvc;
